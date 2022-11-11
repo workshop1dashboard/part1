@@ -3,10 +3,10 @@
       <div class="flex">
         <div id="map" class="basemap"></div>
         <div id="option" style="display: none;">
-          <button @click="updateMarker()">update</button>
-          <button @click="remove()">remove</button>
+          <button @click="updateMarker()">Modifier</button>
+          <button @click="remove()">Supprimer le marqueur</button>
         </div>
-        <button @click="create()">create</button>
+        <button style="width: 100px; height: 200px;" @click="create()">Ajouter</button>
       </div>
   </div>
 </template>
@@ -70,12 +70,14 @@
 
     methods: {
       async updateMarker() {
+        alert("Cliquer à l'endroit où le marqueur doit être déplacé");
         this.map.on("click", async (e) => {
           await axios.patch('https://workshoppart1.herokuapp.com/markers/'+this.id, {long: e.lngLat.lng, lat: e.lngLat.lat});
           window.location.reload();
         });
       },
       create() {
+        alert("Cliquer à l'endroit où le marqueur doit être créé");
         this.map.on("click", async (e) => {
           await axios.post('https://workshoppart1.herokuapp.com/markers', {long: e.lngLat.lng, lat: e.lngLat.lat});
           window.location.reload();
