@@ -41,7 +41,7 @@
       this.map.addControl(new mapboxgl.NavigationControl(), "top-right");
 
       try {
-        const res = await axios.get(`http://localhost:3000/markers`);
+        const res = await axios.get(`https://workshoppart1.herokuapp.com/markers`);
         this.markers = res.data;
       } catch (e) {
         console.error(e);
@@ -71,18 +71,18 @@
     methods: {
       async updateMarker() {
         this.map.on("click", async (e) => {
-          await axios.patch('http://localhost:3000/markers/'+this.id, {long: e.lngLat.lng, lat: e.lngLat.lat});
+          await axios.patch('https://workshoppart1.herokuapp.com/markers/'+this.id, {long: e.lngLat.lng, lat: e.lngLat.lat});
           window.location.reload();
         });
       },
       create() {
         this.map.on("click", async (e) => {
-          await axios.post('http://localhost:3000/markers', {long: e.lngLat.lng, lat: e.lngLat.lat});
+          await axios.post('https://workshoppart1.herokuapp.com/markers', {long: e.lngLat.lng, lat: e.lngLat.lat});
           window.location.reload();
         });
       },
       async remove() {
-        await axios.delete('http://localhost:3000/markers/'+this.id);
+        await axios.delete('https://workshoppart1.herokuapp.com/markers/'+this.id);
         window.location.reload();
       }
     }
