@@ -4,7 +4,7 @@ const path = require('path');
 const express = require('express');
 const middlewares = jsonServer.defaults();
 const router = jsonServer.router('db.json');
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 8080;
 
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(middlewares)
@@ -13,5 +13,5 @@ app.use(router);
 app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
-console.log(app);
+
 app.listen(port);
